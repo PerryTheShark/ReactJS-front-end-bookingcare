@@ -3,18 +3,16 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import "./UserManage.scss";
 import { getAllUsers } from "../../services/userService";
+import ModalUser from "./ModalUser";
 
 class UserManage extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      arrUsers: [],
+      isOpenModalUser: false,
+    };
   }
-  /** Life cycle
-   * 1. Run component
-   * 2. Did mount (set state)
-   * 3. Render
-   *
-   */
 
   async componentDidMount() {
     let response = await getAllUsers("ALL");
@@ -25,11 +23,39 @@ class UserManage extends Component {
     }
   }
 
+  handleAddNerUser = () => {
+    this.setState({
+      isOpenModalUser: true,
+    });
+  };
+
+  toggleUserModel = () => {
+    this.setState({
+      isOpenModalUser: !this.state.isOpenModalUser,
+    });
+  };
+
+  /** Life cycle
+   * 1. Run component
+   * 2. Did mount (set state)
+   * 3. Render (re-render)
+   *
+   */
+
   render() {
     let arrUsers = this.state.arrUsers;
     return (
       <div className="users-container">
+        <ModalUser
+          isOpen={this.state.isOpenModalUser}
+          toggleFromParent={this.toggleUserModel}
+        />
         <div className="title text-center">Manage user by PerryTheShark</div>
+        <div className="mx-1" onClick={() => this.handleAddNerUser()}>
+          <button className="btn btn-primary px-3">
+            <i className="fas fa-plus"></i> Add new user
+          </button>
+        </div>
         <div className="user-table">
           <table id="customers">
             <tr>
