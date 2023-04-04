@@ -6,7 +6,13 @@ import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 class ModalUser extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      email: "",
+      password: "",
+      firstName: "",
+      lastName: "",
+      address: "",
+    };
   }
 
   componentDidMount() {}
@@ -15,9 +21,37 @@ class ModalUser extends Component {
     this.props.toggleFromParent();
   };
 
+  handleOnchangeInput = (event, id) => {
+    //not modify this so this is good code
+    let copyState = { ...this.state };
+    copyState[id] = event.target.value;
+    this.setState({
+      ...copyState,
+    });
+  };
+
+  checkValidateInput = () => {
+    let isValid = true;
+    let arrInput = ["email", "password", "firstName", "lastName", "address"];
+    for (let i = 0; i < arrInput.length; i++) {
+      if (!this.state[arrInput[i]]) {
+        isValid = false;
+        alert("Missing parameter: " + arrInput[i]);
+        break;
+      }
+    }
+    return isValid;
+  };
+
+  handleAddNewUser = () => {
+    let isValid = this.checkValidateInput();
+    if (isValid === true) {
+      //call api create modal
+      this.props.createNewUser(this.state);
+    }
+  };
+
   render() {
-    console.log("check childs property", this.props);
-    console.log("check childs open model", this.props.isOpen);
     return (
       <Modal
         isOpen={this.props.isOpen}
@@ -38,23 +72,53 @@ class ModalUser extends Component {
           <div className="modal-user-body">
             <div className="input-container">
               <label>Email</label>
-              <input type="text"></input>
+              <input
+                type="text"
+                onChange={(event) => {
+                  this.handleOnchangeInput(event, "email");
+                }}
+                value={this.state.email}
+              ></input>
             </div>
             <div className="input-container">
               <label>Password</label>
-              <input type="password"></input>
+              <input
+                type="password"
+                onChange={(event) => {
+                  this.handleOnchangeInput(event, "password");
+                }}
+                value={this.state.password}
+              ></input>
             </div>
             <div className="input-container">
               <label>First name</label>
-              <input type="text"></input>
+              <input
+                type="text"
+                onChange={(event) => {
+                  this.handleOnchangeInput(event, "firstName");
+                }}
+                value={this.state.firstName}
+              ></input>
             </div>
             <div className="input-container">
               <label>Last name</label>
-              <input type="text"></input>
+              <input
+                type="text"
+                onChange={(event) => {
+                  this.handleOnchangeInput(event, "lastName");
+                }}
+                value={this.state.lastName}
+              ></input>
             </div>
             <div className="input-container max-width-input">
               <label>Address</label>
-              <input type="text"></input>
+              <input
+                type="text"
+                onChange={(event) => {
+                  this.handleOnchangeInput(event, "address");
+                }}
+                value={this.state.address}
+              ></input>
             </div>
           </div>
         </ModalBody>
@@ -63,10 +127,10 @@ class ModalUser extends Component {
             color="primary"
             className="px-3"
             onClick={() => {
-              this.toggle();
+              this.handleAddNewUser();
             }}
           >
-            Save changes
+            Add new
           </Button>{" "}
           <Button
             color="secondary"
