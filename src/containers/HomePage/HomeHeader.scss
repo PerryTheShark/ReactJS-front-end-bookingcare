@@ -1,7 +1,7 @@
 .home-header-container {
   height: 60px;
   width: 100%;
-  padding: 0 20px; //only left and right not top and bottom
+  padding: 0 80px; //only left and right not top and bottom
   display: flex;
 
   .home-header-content {
@@ -10,16 +10,17 @@
     display: flex;
 
     .left-content {
-      width: 25%;
+      width: 20%;
       display: flex;
       align-items: center;
-      border: 1px solid red;
 
       .header-logo {
-        background: url("../../assets/logo.svg") center center no-repeat;
+        background: url("") center center no-repeat;
         cursor: pointer;
         height: 100%;
         width: 60%;
+        transform: scale(0.5, 0.5);
+        margin-left: -45px;
       }
 
       i {
@@ -30,7 +31,7 @@
     }
 
     .center-content {
-      width: 50%;
+      width: 55%;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -46,15 +47,42 @@
     .right-content {
       width: 25%;
       display: flex;
-      justify-content: center;
+      justify-content: flex-end;
       align-items: center;
+
+      .support {
+        padding-right: 50px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+
+        i {
+          font-size: 15px;
+          margin-right: 5px;
+        }
+      }
+
+      .language-vi {
+        cursor: pointer;
+        &.active {
+          color: orange;
+        }
+      }
+
+      .language-en {
+        margin: 0 10px;
+        cursor: pointer;
+        &.active {
+          color: blue;
+        }
+      }
     }
   }
 }
 
 .home-header-banner {
   background: url("../../assets/header-background.jpg");
-  height: 485px;
+  height: 700px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -62,9 +90,12 @@
   flex-direction: column;
 
   .content-up {
-    border: 1px solid red;
+    background-image: linear-gradient(
+      rgba(0, 0, 0, 0.25),
+      rgba(255, 255, 255, 0.1)
+    );
     padding-top: 15px;
-    height: 50%;
+    height: 65%;
 
     .title1 {
       text-align: center;
@@ -108,8 +139,15 @@
   }
 
   .content-down {
-    border: 2px solid rgb(1, 8, 1);
-    height: 50%;
+    height: 35%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    background-image: linear-gradient(
+      rgba(255, 255, 255, 0.1),
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 1)
+    );
 
     .options {
       text-align: center;
@@ -118,7 +156,6 @@
       justify-content: center;
 
       .option-child {
-        border: 1px solid red;
         width: 100px;
 
         .icon-child {
