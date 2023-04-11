@@ -2,13 +2,21 @@
   height: 330px;
   background: white;
   border: 1px solid red;
+
+  .specialty-content {
+    margin: 0 50px;
+  }
+
+  .img-custom {
+    height: 300px;
+    border: 1px solid red;
+  }
 }
 
 //reset slick slider css
 
 .slick-prev {
   border: 1px solid green !important;
-  position: relative !important;
   left: 0 !important;
 }
 

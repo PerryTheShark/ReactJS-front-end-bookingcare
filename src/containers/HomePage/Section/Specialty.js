@@ -17,7 +17,7 @@ class Specialty extends Component {
       dots: false,
       Infinite: true,
       speed: 500,
-      slidesToShow: 1,
+      slidesToShow: 4,
       slidesToScroll: 1,
     };
 
