@@ -6,6 +6,8 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
+import specialtyImg from "../../../assets/specialty/121042-than-kinh.jpg";
+
 class Specialty extends Component {
   changeLanguage = (language) => {
     this.props.changeLanguageAppRedux(language);
@@ -23,27 +25,39 @@ class Specialty extends Component {
 
     return (
       <div className="section-specialty">
-        <div className="specialty-content">
-          <Slider {...settings}>
-            <div className="img-custom">
-              <h3>1</h3>
-            </div>
-            <div className="img-custom">
-              <h3>2</h3>
-            </div>
-            <div className="img-custom">
-              <h3>3</h3>
-            </div>
-            <div className="img-custom">
-              <h3>4</h3>
-            </div>
-            <div className="img-custom">
-              <h3>5</h3>
-            </div>
-            <div className="img-custom">
-              <h3>6</h3>
-            </div>
-          </Slider>
+        <div className="specialty-container">
+          <div className="specialty-header">
+            <span className="title-section">Chuyen khoa pho bien</span>
+            <button className="btn-section">xem them</button>
+          </div>
+          <div className="specialty-body">
+            <Slider {...settings}>
+              <div className="specialty-custommize">
+                <div className="bg-image" />
+                <div>Co xuong khop 1</div>
+              </div>
+              <div className="specialty-custommize">
+                <div className="bg-image" />
+                <div>Co xuong khop 2</div>
+              </div>
+              <div className="specialty-custommize">
+                <div className="bg-image" />
+                <div>Co xuong khop 3</div>
+              </div>
+              <div className="specialty-custommize">
+                <div className="bg-image" />
+                <div>Co xuong khop 4</div>
+              </div>
+              <div className="specialty-custommize">
+                <div className="bg-image" />
+                <div>Co xuong khop 5</div>
+              </div>
+              <div className="specialty-custommize">
+                <div className="bg-image" />
+                <div>Co xuong khop 6</div>
+              </div>
+            </Slider>
+          </div>
         </div>
       </div>
     );
