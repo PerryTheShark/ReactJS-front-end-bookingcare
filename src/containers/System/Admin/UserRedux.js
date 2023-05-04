@@ -12,21 +12,86 @@ class UserRedux extends Component {
   render() {
     return (
       <div className="user-redux-container">
-        <div className="title">Perry learn Redux with hoidanit</div>
+        <div className="title">Learn React-Redux with PerryTheShark</div>
         <div className="user-redux-body">
           <div className="container">
             <div className="row">
-              <div className="col-6">
-                <label>Email </label>
+              <div className="col-12">
+                <FormattedMessage id="manage-user.add" />
+              </div>
+              <div className="col-3">
+                <label>
+                  <FormattedMessage id="manage-user.email" />
+                </label>
                 <input className="form-control" type="email" />
               </div>
-              <div className="col-6">
-                <label>Email1 </label>
-                <input className="form-control" type="email" />
+              <div className="col-3">
+                <label>
+                  <FormattedMessage id="manage-user.password" />
+                </label>
+                <input className="form-control" type="password" />
               </div>
-              <div className="col-6">
-                <label>Email2 </label>
-                <input className="form-control" type="email" />
+              <div className="col-3">
+                <label>
+                  <FormattedMessage id="manage-user.firstName" />
+                </label>
+                <input className="form-control" type="text" />
+              </div>
+              <div className="col-3">
+                <label>
+                  <FormattedMessage id="manage-user.lastName" />
+                </label>
+                <input className="form-control" type="text" />
+              </div>
+              <div className="col-3">
+                <label>
+                  <FormattedMessage id="manage-user.phoneNumber" />
+                </label>
+                <input className="form-control" type="text" />
+              </div>
+              <div className="col-9">
+                <label>
+                  <FormattedMessage id="manage-user.address" />
+                </label>
+                <input className="form-control" type="text" />
+              </div>
+              <div className="col-3">
+                <label>
+                  <FormattedMessage id="manage-user.gender" />
+                </label>
+                <select className="form-control">
+                  <option selected>Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div className="col-3">
+                <label>
+                  <FormattedMessage id="manage-user.position" />
+                </label>
+                <select className="form-control">
+                  <option selected>Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div className="col-3">
+                <label>
+                  <FormattedMessage id="manage-user.role" />
+                </label>
+                <select className="form-control">
+                  <option selected>Choose...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div className="col-3">
+                <label>
+                  <FormattedMessage id="manage-user.image" />
+                </label>
+                <input type="text" className="form-control" />
+              </div>
+              <div className="col-12">
+                <button className="btn btn-primary">
+                  <FormattedMessage id="manage-user.save" />
+                </button>
               </div>
             </div>
           </div>
