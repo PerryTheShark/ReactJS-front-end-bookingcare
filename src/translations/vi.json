@@ -53,7 +53,7 @@
   "manage-user": {
     "add": "Thêm mới người dùng",
     "email": "Email",
-    "password": "Password",
+    "password": "Mật khẩu",
     "lastName": "Tên",
     "firstName": "Họ",
     "phoneNumber": "Số điện thoại",
