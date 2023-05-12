@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { FormatedMessage } from "react-intl";
 
 class HomeFooter extends Component {
   render() {
