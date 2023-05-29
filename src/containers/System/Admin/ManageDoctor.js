@@ -9,12 +9,7 @@ import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import Select from "react-select";
-
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
+import { LANGUAGES } from "../../../utils";
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
 
@@ -26,12 +21,26 @@ class TableManageUser extends Component {
       contentHTML: "",
       selectedOption: "",
       description: "",
+      listDoctors: [],
     };
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.props.fetchAllDoctors();
+  }
 
-  componentDidUpdate(prevProps, prevState, snapshot) {}
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (
+      prevProps.allDoctors !== this.props.allDoctors ||
+      prevProps.language != this.props.language
+    ) {
+      console.log("Perry check didupdate: ", this.props.dataSelect);
+      let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
+      this.setState({
+        listDoctors: dataSelect,
+      });
+    }
+  }
 
   handleEditorChange = ({ html, text }) => {
     this.setState({
@@ -41,6 +50,12 @@ class TableManageUser extends Component {
   };
 
   handleSaveContentMarkdown = () => {
+    this.props.saveDetailDoctor({
+      contentHTML: this.state.contentHTML,
+      contentMarkdown: this.state.contentMarkdown,
+      description: this.state.description,
+      doctorId: this.state.selectedOption.value,
+    });
     console.log("Perry check state:", this.state);
   };
 
@@ -54,9 +69,23 @@ class TableManageUser extends Component {
     });
   };
 
-  render() {
-    let arrUsers = this.state.usersRedux;
+  buildDataInputSelect = (inputData) => {
+    let result = [];
+    let { language } = this.props;
+    if (inputData && inputData.length > 0) {
+      inputData.map((item, index) => {
+        let object = {};
+        let labelVi = `${item.lastName} ${item.firstName}`;
+        let labelEn = `${item.firstName} ${item.lastName}`;
+        object.label = language === LANGUAGES.VI ? labelVi : labelEn;
+        object.value = item.id;
+        result.push(object);
+      });
+      return result;
+    }
+  };
 
+  render() {
     return (
       <div className="manage-doctor-container">
         <div className="manage-doctor-title">Create Doctor blog</div>
@@ -66,7 +95,7 @@ class TableManageUser extends Component {
             <Select
               value={this.state.selectedOption}
               onChange={this.handleChange}
-              options={options}
+              options={this.state.listDoctors}
             />
           </div>
           <div className="content-right">
@@ -101,14 +130,15 @@ class TableManageUser extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    listUsers: state.admin.users,
+    language: state.app.language,
+    allDoctors: state.admin.allDoctors,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchUserRedux: () => dispatch(actions.fetchAllUsersStart()),
-    deleteAUserRedux: (id) => dispatch(actions.deleteAUser(id)),
+    fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
+    saveDetailDoctor: (data) => dispatch(actions.saveDetailDoctor(data)),
   };
 };
 
