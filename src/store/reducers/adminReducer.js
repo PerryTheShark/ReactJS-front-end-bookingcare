@@ -23,13 +23,11 @@ const adminReducer = (state = initialState, action) => {
       let copyState = { ...state };
       copyState.genders = action.data;
       copyState.isLoadingGender = false;
-      console.log("hoi PerryTheShark: fire action success", copyState);
       return {
         ...copyState,
       };
 
     case actionTypes.FETCH_GENDER_FAILED:
-      console.log("hoi PerryTheShark: fire action failed", action);
       state.isLoadingGender = false;
       state.genders = [];
       return {

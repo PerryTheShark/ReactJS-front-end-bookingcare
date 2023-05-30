@@ -31,12 +31,11 @@ const appReducer = (state = initialState, action) => {
           ...action.contentOfConfirmModal,
         },
       };
-      case actionTypes.CHANGE_LANGUAGE:
-        console.log('askPerryTheShark check redux: ', action)
-        return {
-          ...state,
-          language: action.language,
-        };
+    case actionTypes.CHANGE_LANGUAGE:
+      return {
+        ...state,
+        language: action.language,
+      };
     default:
       return state;
   }

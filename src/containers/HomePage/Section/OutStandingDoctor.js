@@ -18,10 +18,6 @@ class OutStandingDoctor extends Component {
 
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (prevProps.topDoctorsRedux !== this.props.topDoctorsRedux) {
-      console.log(
-        "Perry check doctorRedux in componentDidUpdate: ",
-        this.props.topDoctorsRedux
-      );
       this.setState({
         arrDoctors: this.props.topDoctorsRedux,
       });
