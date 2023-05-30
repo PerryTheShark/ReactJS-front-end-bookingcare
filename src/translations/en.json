@@ -23,19 +23,6 @@
     "child6": "Dental examination"
   },
   "menu": {
-    "system": {
-      "header": "System",
-      "system-administrator": {
-        "header": "System Administrator",
-        "user-manage": "User manage",
-        "user-redux": "Package manage user using redux",
-        "register-package-group-or-account": "Register service package for group/account"
-      },
-      "system-parameter": {
-        "header": "System-parameter"
-      }
-    },
-
     "admin": {
       "manage-user": "User manage",
       "manage-doctor": "Doctor manage",
@@ -48,6 +35,9 @@
       "manage-specialty": "Manage specialties",
       "handbook": "Handbook",
       "manage-handbook": "Manage handbook"
+    },
+    "doctor": {
+      "manage-schedule": "Manage Doctor's schedule"
     }
   },
   "manage-user": {
