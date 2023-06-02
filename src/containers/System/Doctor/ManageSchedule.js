@@ -31,7 +31,7 @@ class ManageSchdule extends Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     if (
       prevProps.allDoctors !== this.props.allDoctors ||
-      prevProps.language != this.props.language
+      prevProps.language !== this.props.language
     ) {
       let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
       this.setState({
