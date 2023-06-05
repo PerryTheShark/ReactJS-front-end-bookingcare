@@ -18,6 +18,7 @@ class ProfileDoctor extends Component {
 
   async componentDidMount() {
     let data = await this.getInforDoctor(this.props.doctorId);
+    console.log("perry check data in profileDoctor: ", this.props.doctorId);
     this.setState({
       dataProfile: data,
     });
@@ -38,7 +39,7 @@ class ProfileDoctor extends Component {
     if (this.props.language !== prevProps.language) {
     }
     if (this.props.doctorId !== prevProps.doctorId) {
-      //   this.getInforDoctor(this.props.doctorId);
+      this.getInforDoctor(this.props.doctorId);
     }
   }
 
@@ -64,7 +65,9 @@ class ProfileDoctor extends Component {
           <div>
             {time} - {date}
           </div>
-          <div>Booking for free</div>
+          <div>
+            <FormattedMessage id="patient.booking-modal.priceBooking" />
+          </div>
         </>
       );
     }
@@ -80,6 +83,7 @@ class ProfileDoctor extends Component {
       nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.firstName} ${dataProfile.lastName}`;
       nameEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
+
     console.log("Perry check state of ProfileDoctor: ", this.state);
     return (
       <div className="profile-doctor-container">
@@ -112,7 +116,7 @@ class ProfileDoctor extends Component {
           </div>
         </div>
         <div className="price">
-          Price:
+          <FormattedMessage id="patient.booking-modal.price" />
           {dataProfile &&
             dataProfile.Doctor_Infor &&
             language === LANGUAGES.VI && (

@@ -99,7 +99,6 @@ class DoctorSchedule extends Component {
           allAvalableTime: res.data ? res.data : [],
         });
       }
-      console.log("Perry check response: ", res);
     }
   };
 
@@ -108,7 +107,6 @@ class DoctorSchedule extends Component {
       isOpenModalBooking: true,
       dataScheduleTimeModal: time,
     });
-    console.log("Perry check handle click", time);
   };
 
   closeBookingModal = () => {

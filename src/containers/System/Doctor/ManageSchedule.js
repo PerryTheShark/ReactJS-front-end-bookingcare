@@ -131,7 +131,6 @@ class ManageSchdule extends Component {
       toast.success("Save Infor succeed!");
     } else {
       toast.error("error save bulkSchedule");
-      console.log("Perry check save bulk create: ", res);
     }
   };
 
