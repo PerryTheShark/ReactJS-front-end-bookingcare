@@ -31,6 +31,7 @@ class HomeHeader extends Component {
                 className="header-logo"
                 src={logo}
                 onClick={() => this.returnToHome()}
+                alt="this-is-picture"
               />
               <div className="header-logo"></div>
             </div>

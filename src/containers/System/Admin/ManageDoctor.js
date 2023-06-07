@@ -29,12 +29,20 @@ class TableManageUser extends Component {
       listPrice: [],
       listPayment: [],
       listProvince: [],
+      listClinic: [],
+      listSpecialty: [],
+
       selectedPrice: "",
       selectedPayment: "",
       selectedProvince: "",
+      selectedClinic: "",
+      selectedSpecialty: "",
+
       nameClinic: "",
       addressClinic: "",
       note: "",
+      clinicId: "",
+      specialtyId: "",
     };
   }
 
@@ -77,6 +85,14 @@ class TableManageUser extends Component {
           result.push(object);
         });
       }
+      if (type === "SPECIALTY") {
+        inputData.map((item, index) => {
+          let object = {};
+          object.label = item.name;
+          object.value = item.id;
+          result.push(object);
+        });
+      }
     }
     return result;
   };
@@ -95,7 +111,7 @@ class TableManageUser extends Component {
     if (
       prevProps.allRequiredDoctorInfor !== this.props.allRequiredDoctorInfor
     ) {
-      let { resPayment, resPrice, resProvince } =
+      let { resPayment, resPrice, resProvince, resSpecialty } =
         this.props.allRequiredDoctorInfor;
       let dataSelectPrice = this.buildDataInputSelect(resPrice, "PRICE");
       let dataSelectPayment = this.buildDataInputSelect(resPayment, "PAYMENT");
@@ -103,11 +119,16 @@ class TableManageUser extends Component {
         resProvince,
         "PROVINCE"
       );
+      let dataSelectSpecialty = this.buildDataInputSelect(
+        resSpecialty,
+        "SPECIALTY"
+      );
 
       this.setState({
         listPrice: dataSelectPrice,
         listPayment: dataSelectPayment,
         listProvince: dataSelectProvince,
+        listSpecialty: dataSelectSpecialty,
       });
     }
 
@@ -156,6 +177,11 @@ class TableManageUser extends Component {
       nameClinic: this.state.nameClinic,
       addressClinic: this.state.addressClinic,
       note: this.state.note,
+      specialtyId: this.state.selectedSpecialty.value,
+      clinicId:
+        this.state.selectedClinic && this.state.selectedClinic.value
+          ? this.state.selectedClinic.value
+          : "",
     });
   };
 
@@ -243,7 +269,8 @@ class TableManageUser extends Component {
   };
 
   render() {
-    let { hasOldData } = this.state;
+    let { hasOldData, listSpecialty } = this.state;
+    console.log("Perry check state: ", this.state);
 
     return (
       <div className="manage-doctor-container">
@@ -352,14 +379,45 @@ class TableManageUser extends Component {
             ></input>
           </div>
         </div>
+        <div className="row">
+          <div className="col-4 form-group">
+            <label>
+              {" "}
+              <FormattedMessage id="admin.manage-doctor.specialty" />
+            </label>
+            <Select
+              value={this.state.selectedSpecialty}
+              options={this.state.listSpecialty}
+              onChange={this.handleChangeSelectDoctorInfor}
+              placeholder={
+                <FormattedMessage id="admin.manage-doctor.specialty" />
+              }
+              name="selectedSpecialty"
+            />
+          </div>
+          <div className="col-4 form-group">
+            <label>
+              {" "}
+              <FormattedMessage id="admin.manage-doctor.clinic" />
+            </label>
+            <Select
+              value={this.state.selectedClinic}
+              options={this.state.listClinic}
+              onChange={this.handleChangeSelectDoctorInfor}
+              placeholder={<FormattedMessage id="admin.manage-doctor.clinic" />}
+              name="selectedClinic"
+            />
+          </div>
+        </div>
         <div className="manage-doctor-editor">
           <MdEditor
-            style={{ height: "500px" }}
+            style={{ height: "300px" }}
             renderHTML={(text) => mdParser.render(text)}
             onChange={this.handleEditorChange}
             value={this.state.contentMarkdown}
           />
         </div>
+
         <button
           onClick={() => this.handleSaveContentMarkdown()}
           className={

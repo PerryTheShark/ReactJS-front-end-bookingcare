@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./DoctorSchedule.scss";
-import moment, { lang } from "moment";
+import moment from "moment";
 import locallization from "moment/locale/vi"; //this line to let momen know to use Vietnamese
 import { LANGUAGES } from "../../../utils";
 import { getScheduleDoctorByDate } from "../../../services/userService";

@@ -9,9 +9,6 @@ import ManageSpecialty from "../containers/System/Specialty/ManageSpecialty";
 
 class System extends Component {
   render() {
-    {
-      /*< {this.props.isLoggedIn && <Header />}> */
-    }
     const { systemMenuPath, isLoggedIn } = this.props;
     return (
       <React.Fragment>
