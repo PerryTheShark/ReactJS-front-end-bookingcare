@@ -18,7 +18,6 @@ class ProfileDoctor extends Component {
 
   async componentDidMount() {
     let data = await this.getInforDoctor(this.props.doctorId);
-    console.log("perry check data in profileDoctor: ", this.props.doctorId);
     this.setState({
       dataProfile: data,
     });
@@ -84,7 +83,6 @@ class ProfileDoctor extends Component {
       nameEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
 
-    console.log("Perry check state of ProfileDoctor: ", this.state);
     return (
       <div className="profile-doctor-container">
         <div className="intro-doctor">
