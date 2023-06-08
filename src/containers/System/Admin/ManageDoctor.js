@@ -187,7 +187,7 @@ class TableManageUser extends Component {
 
   handleChangeSelect = async (selectedOption) => {
     this.setState({ selectedOption });
-    let { listPayment, listProvince, listPrice } = this.state;
+    let { listPayment, listProvince, listPrice, listSpecialty } = this.state;
     let res = await getDetailInforDoctor(selectedOption.value);
     if (res && res.errCode === 0 && res.data && res.data.Markdown) {
       let markdown = res.data.Markdown;
@@ -198,9 +198,11 @@ class TableManageUser extends Component {
         paymentId = "",
         priceId = "",
         provinceId = "",
+        specialtyId = "",
         selectedPrice = "",
         selectedPayment = "",
-        selectedProvince = "";
+        selectedProvince = "",
+        selectedSpecialty = "";
 
       if (res.data.Doctor_Infor) {
         addressClinic = res.data.Doctor_Infor.addressClinic;
@@ -210,6 +212,7 @@ class TableManageUser extends Component {
         paymentId = res.data.Doctor_Infor.paymentId;
         priceId = res.data.Doctor_Infor.priceId;
         provinceId = res.data.Doctor_Infor.provinceId;
+        specialtyId = res.data.Doctor_Infor.specialtyId;
 
         selectedPrice = listPrice.find((item) => {
           return item && item.value === priceId;
@@ -219,6 +222,10 @@ class TableManageUser extends Component {
         });
         selectedProvince = listProvince.find((item) => {
           return item && item.value === provinceId;
+        });
+
+        selectedSpecialty = listSpecialty.find((item) => {
+          return item && item.value === specialtyId;
         });
       }
 
@@ -233,6 +240,7 @@ class TableManageUser extends Component {
         selectedPrice: selectedPrice,
         selectedPayment: selectedPayment,
         selectedProvince: selectedProvince,
+        selectedSpecialty: selectedSpecialty,
       });
     } else {
       this.setState({
@@ -246,6 +254,7 @@ class TableManageUser extends Component {
         selectedPrice: "",
         selectedPayment: "",
         selectedProvince: "",
+        selectedSpecialty: "",
       });
     }
   };
