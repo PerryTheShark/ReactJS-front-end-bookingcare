@@ -79,7 +79,7 @@ class ProfileDoctor extends Component {
     let nameVi = "",
       nameEn = "";
     if (dataProfile && dataProfile.positionData) {
-      nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.firstName} ${dataProfile.lastName}`;
+      nameVi = `${dataProfile.positionData.valueVi}, ${dataProfile.lastName} ${dataProfile.firstName}`;
       nameEn = `${dataProfile.positionData.valueEn}, ${dataProfile.firstName} ${dataProfile.lastName}`;
     }
 
