@@ -4,7 +4,10 @@ import "./DoctorSchedule.scss";
 import moment from "moment";
 import locallization from "moment/locale/vi"; //this line to let momen know to use Vietnamese
 import { LANGUAGES } from "../../../utils";
-import { getScheduleDoctorByDate } from "../../../services/userService";
+import {
+  getProfileDoctorById,
+  getScheduleDoctorByDate,
+} from "../../../services/userService";
 import { FormattedMessage } from "react-intl";
 import BookingModal from "./Modal/BookingModal";
 
@@ -22,6 +25,16 @@ class DoctorSchedule extends Component {
   async componentDidMount() {
     let { language } = this.props;
     let allDays = this.getArrDays(language);
+
+    if (this.props.doctorIdFromParent) {
+      let res = await getScheduleDoctorByDate(
+        this.props.doctorIdFromParent,
+        allDays[0].value
+      );
+      this.setState({
+        allAvalableTime: res.data ? res.data : [],
+      });
+    }
 
     this.setState({
       allDays: allDays,
