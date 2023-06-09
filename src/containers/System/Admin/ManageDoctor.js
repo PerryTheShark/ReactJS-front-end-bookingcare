@@ -93,6 +93,14 @@ class TableManageUser extends Component {
           result.push(object);
         });
       }
+      if (type === "CLINIC") {
+        inputData.map((item, index) => {
+          let object = {};
+          object.label = item.name;
+          object.value = item.id;
+          result.push(object);
+        });
+      }
     }
     return result;
   };
@@ -111,8 +119,9 @@ class TableManageUser extends Component {
     if (
       prevProps.allRequiredDoctorInfor !== this.props.allRequiredDoctorInfor
     ) {
-      let { resPayment, resPrice, resProvince, resSpecialty } =
+      let { resPayment, resPrice, resProvince, resSpecialty, resClinic } =
         this.props.allRequiredDoctorInfor;
+
       let dataSelectPrice = this.buildDataInputSelect(resPrice, "PRICE");
       let dataSelectPayment = this.buildDataInputSelect(resPayment, "PAYMENT");
       let dataSelectProvince = this.buildDataInputSelect(
@@ -123,12 +132,15 @@ class TableManageUser extends Component {
         resSpecialty,
         "SPECIALTY"
       );
+      let dataSelectClinic = this.buildDataInputSelect(resClinic, "CLINIC");
+      console.log("Perry check data clinic1: ", dataSelectClinic);
 
       this.setState({
         listPrice: dataSelectPrice,
         listPayment: dataSelectPayment,
         listProvince: dataSelectProvince,
         listSpecialty: dataSelectSpecialty,
+        listClinic: dataSelectClinic,
       });
     }
 
@@ -187,7 +199,8 @@ class TableManageUser extends Component {
 
   handleChangeSelect = async (selectedOption) => {
     this.setState({ selectedOption });
-    let { listPayment, listProvince, listPrice, listSpecialty } = this.state;
+    let { listPayment, listProvince, listPrice, listSpecialty, listClinic } =
+      this.state;
     let res = await getDetailInforDoctor(selectedOption.value);
     if (res && res.errCode === 0 && res.data && res.data.Markdown) {
       let markdown = res.data.Markdown;
@@ -199,10 +212,12 @@ class TableManageUser extends Component {
         priceId = "",
         provinceId = "",
         specialtyId = "",
+        clinicId = "",
         selectedPrice = "",
         selectedPayment = "",
         selectedProvince = "",
-        selectedSpecialty = "";
+        selectedSpecialty = "",
+        selectedClinic = "";
 
       if (res.data.Doctor_Infor) {
         addressClinic = res.data.Doctor_Infor.addressClinic;
@@ -213,6 +228,7 @@ class TableManageUser extends Component {
         priceId = res.data.Doctor_Infor.priceId;
         provinceId = res.data.Doctor_Infor.provinceId;
         specialtyId = res.data.Doctor_Infor.specialtyId;
+        clinicId = res.data.Doctor_Infor.clinicId;
 
         selectedPrice = listPrice.find((item) => {
           return item && item.value === priceId;
@@ -226,6 +242,10 @@ class TableManageUser extends Component {
 
         selectedSpecialty = listSpecialty.find((item) => {
           return item && item.value === specialtyId;
+        });
+
+        selectedClinic = listClinic.find((item) => {
+          return item && item.value === clinicId;
         });
       }
 
@@ -241,6 +261,7 @@ class TableManageUser extends Component {
         selectedPayment: selectedPayment,
         selectedProvince: selectedProvince,
         selectedSpecialty: selectedSpecialty,
+        selectedClinic: selectedClinic,
       });
     } else {
       this.setState({
@@ -255,6 +276,7 @@ class TableManageUser extends Component {
         selectedPayment: "",
         selectedProvince: "",
         selectedSpecialty: "",
+        selectedClinic: "",
       });
     }
   };
